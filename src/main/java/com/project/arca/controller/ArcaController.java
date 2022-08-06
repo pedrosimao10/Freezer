@@ -72,12 +72,12 @@ public class ArcaController {
         return new Food();
     }
     
-    @GetMapping("/")
+    @GetMapping("/index")
     public String getAskIdentifier(Model model) {
-      return "login";
+      return "index";
     }
 
-    @PostMapping("/")
+    @PostMapping("/index")
     public String greetingSubmit(@ModelAttribute LoginInput inputLogin, Model model) throws SQLException, ClassNotFoundException {
         HttpSession session = httpSessionFactory.getObject();
         String email = inputLogin.getEmail();
@@ -85,7 +85,7 @@ public class ArcaController {
 
         if (email == "" || password == "") {
         model.addAttribute("error", "Todos os campos devem ser preenchidos");
-        return "login";
+        return "index";
         }
 
         User user = userService.getUserByEmail(email);
@@ -99,7 +99,7 @@ public class ArcaController {
             return "redirect:/home";
         }
     model.addAttribute("error", "Email ou Password Incorretoss");
-    return "login";
+    return "index";
   }
 
     @GetMapping("/register")
@@ -121,7 +121,7 @@ public class ArcaController {
                 return "register";
             }else{
                 userRepository.save(user);
-                return "redirect:/";
+                return "redirect:/index";
         }
     }
 
@@ -140,7 +140,7 @@ public class ArcaController {
 
         conn.close();
 
-        return "redirect:/";
+        return "redirect:/index";
     }
 
     @GetMapping("/home")
