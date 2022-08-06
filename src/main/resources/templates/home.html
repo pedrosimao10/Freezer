@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+   <meta charset="UTF-8" />
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <link rel="stylesheet" href="/css/style.css" />
+   <title>Freezer Home Page</title>
+ </head>
+ <body>
+   <nav class="navbar">
+     <!-- LOGO -->
+     <div class="logo">
+      <a class="navbar-brand brand-logo" th:href="@{/home}"><img style="height: 70px; width: 73px; text-align: left;" src="/images/freezerlogo.jpeg" alt="Avatar" class="avatar">
+     </div>
+     <!-- NAVIGATION MENU -->
+     <ul class="nav-links">
+       <!-- USING CHECKBOX HACK -->
+       <input type="checkbox" id="checkbox_toggle" />
+       <label for="checkbox_toggle" class="hamburger">&#9776;</label>
+       <!-- NAVIGATION MENUS -->
+       <div class="menu">
+         <li><a th:href="@{/carne}">Carne</a></li>
+         <li><a th:href="@{/peixe}">Peixe</a></li>
+         <li><a th:href="@{/legumes}">Legumes</a></li>
+         <li><a th:href="@{/pizza}">Pizza</a></li>
+         <li><a th:href="@{/sobremesa}">Sobremesas</a></li>
+         <li><a th:href="@{/logout}">Logout</a></li>
+       </div>
+     </ul>
+   </nav>
+   <br>
+   <center>
+   <div class="blah">
+    <div>
+        <h1 id="welcome">Bem vindo/a&nbsp;</h1><br>
+      </div>
+    <div>
+        <h1 th:text="${user.name}"></h1>
+    </div>
+  </div>
+  <h1 style="font-size: 30px;" id="welcome">O que está na sua arca congeladora?&nbsp;</h1><br>
+  <img style="height: 350px; width: 400px; text-align: center;" src="/images/chestfreezer.jpg">
+  <br>
+  <div class="row">
+    <div class="column">
+      <a th:href="@{/carne}">
+      <img src="/images/carne.jpg" alt="Avatar" class="avatar" style="width:180px">
+      <p th:text="${NCarne}"></p>
+      </a>
+    </div>
+    <div class="column">
+      <a th:href="@{/peixe}">
+      <img src="/images/peixe.jpg" alt="Avatar" class="avatar" style="width: 200px;">
+      <p th:text="${NPeixe}"></p>
+      </a>
+    </div>
+    <div class="column">
+      <a th:href="@{/vegetais}">
+      <img src="/images/vegetais.jpg" alt="Avatar" class="avatar" style="width: 135px;">
+      <p th:text="${NVegetal}"></p>
+      </a>
+    </div>
+    <div class="column">
+      <a th:href="@{/pizza}">
+      <img src="/images/pizza.jpg" alt="Avatar" class="avatar" style="width: 150px;">
+      <p th:text="${NPizza}"></p>
+      </a>
+    </div>
+    <div class="column">
+      <a th:href="@{/sobremesa}">
+      <img src="/images/gelado.jpg" alt="Avatar" class="avatar" style="width: 200px;">
+      <p th:text="${NSobremesa}"></p>
+      </a>
+    </div>
+  </div>
+    </center>
+ </body>
+</html>

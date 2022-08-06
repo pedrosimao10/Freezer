@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+    <style>
+        table,
+      table td {
+        border: 1px solid #cccccc;
+      }
+      td {
+        height: 80px;
+        width: 160px;
+        text-align: center;
+        vertical-align: middle;
+      }
+    </style>
+    <script>
+      function openForm() {
+      document.getElementById("myForm").style.display = "block";
+      }
+
+      function closeForm() {
+      document.getElementById("myForm").style.display = "none";
+      }
+  </script>
+   <meta charset="UTF-8" />
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <link rel="stylesheet" href="/css/style.css" />
+   <title>Freezer Home Page</title>
+ </head>
+ <body>
+   <nav class="navbar">
+     <!-- LOGO -->
+     <div class="logo">
+      <a class="navbar-brand brand-logo" th:href="@{/home}"><img style="height: 70px; width: 73px; text-align: left;" src="/images/freezerlogo.jpeg" alt="Avatar" class="avatar">
+     </div>
+     <!-- NAVIGATION MENU -->
+     <ul class="nav-links">
+       <!-- USING CHECKBOX HACK -->
+       <input type="checkbox" id="checkbox_toggle" />
+       <label for="checkbox_toggle" class="hamburger">&#9776;</label>
+       <!-- NAVIGATION MENUS -->
+       <div class="menu">
+         <li><a th:href="@{/carne}">Carne</a></li>
+         <li><a th:href="@{/peixe}">Peixe</a></li>
+         <li><a th:href="@{/legumes}">Legumes</a></li>
+         <li><a th:href="@{/pizza}">Pizza</a></li>
+         <li><a th:href="@{/sobremesa}">Sobremesas</a></li>
+         <li><a th:href="@{/logout}">Logout</a></li>
+       </div>
+     </ul>
+   </nav>
+   <br>
+   <center>
+    <div>
+        <table cellpadding="5" cellspacing="5">
+          <tr>
+            <th>Nome</th>
+            <th>Quantidade</th>
+          </tr>
+          <tr th:each="Sobremesa : ${Sobremesas}">
+            <td th:text="${Sobremesa.name}"></td>
+            <td th:text="${Sobremesa.quantity}"></td>
+            <td>
+              <form th:action="@{/deleteSobremesa/{id}(id=${Sobremesa.id})}" th:object="${Sobremesas}" method="POST">
+                <button style="background-color: red;" class="float-right" type="submit">Eliminar</button>
+              </form>
+          </td>
+          </tr>
+        <table>
+          <button class="open-button" type="submit" onclick="openForm()" >Adicionar Sobremesa</button>
+        <div class="form-popup" id="myForm">
+          <form action="#"  th:action="@{/addFoodSobremesa}" th:object="${inputFood}" method="POST">
+        
+            <label for="email"><b>Nome</b></label>
+            <input th:field="*{name}" type="text" class="form-control" placeholder="Name" required>
+        
+            <label for="psw"><b>Quantidade</b></label>
+            <input th:field="*{quantity}" type="text" class="form-control" placeholder="Quantity" required>
+        
+            <button type="submit" class="btn">Adicionar Sobremesa</button>
+            <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+          </form>
+        </div>
+        <p style="color:#FF0000; text-align: center;" th:text="${error}" />
+      </div>
+      </div>
+    </center>
+ </body>
+</html>
