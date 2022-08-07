@@ -131,7 +131,7 @@ public class ArcaController {
         login = loginInputRepository.findAll();
         String email = login.get(0).getEmail();
         String myDriver = "com.mysql.jdbc.Driver";
-        String myUrl = "jdbc:mysql://localhost:3306/heroku_45eb687064902a2";
+        String myUrl = "jdbc:mysql://localhost:3306/heroku_3fd040857891606";
         Class.forName(myDriver);
         Connection conn = DriverManager.getConnection(myUrl, "b14fb5f0c8a789", "bc1c1e29");
         
