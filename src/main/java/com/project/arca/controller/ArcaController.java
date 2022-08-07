@@ -130,6 +130,8 @@ public class ArcaController {
         List<LoginInput> login = new ArrayList<LoginInput>();
         login = loginInputRepository.findAll();
         String email = login.get(0).getEmail();
+        loginInputRepository.deleteByEmail(email);
+        /* 
         String myDriver = "com.mysql.jdbc.Driver";
         String myUrl = "jdbc:mysql://localhost:3306/heroku_3fd040857891606";
         Class.forName(myDriver);
@@ -139,7 +141,7 @@ public class ArcaController {
         st.executeUpdate(" DELETE FROM login_info WHERE email='"+ email + "'");
 
         conn.close();
-
+*/
         return "redirect:/";
     }
 

@@ -9,4 +9,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 @Repository
 public interface LoginInputRepository extends JpaRepository<LoginInput, Long> {
     LoginInput findByEmail(String email);
+    LoginInput deleteByEmail(String email);
 }
