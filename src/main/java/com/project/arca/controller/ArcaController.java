@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
+import javax.transaction.Transactional;
 import javax.validation.constraints.Null;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -125,6 +126,7 @@ public class ArcaController {
         }
     }
 
+    @Transactional
     @GetMapping("/logout")
     public String logout(Model model) throws SQLException, ClassNotFoundException {
         List<LoginInput> login = new ArrayList<LoginInput>();
