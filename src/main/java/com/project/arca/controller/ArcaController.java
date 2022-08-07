@@ -135,7 +135,7 @@ public class ArcaController {
         String myDriver = "com.mysql.jdbc.Driver";
         String myUrl = "jdbc:mysql://localhost:3306/heroku_3fd040857891606";
         Class.forName(myDriver);
-        Connection conn = DriverManager.getConnection(myUrl, "b14fb5f0c8a789", "bc1c1e29");
+        Connection conn = DriverManager.getConnection(myUrl, "b59406f41fe5d6", "6911947e");
         
         Statement st = conn.createStatement();
         st.executeUpdate(" DELETE FROM login_info WHERE email='"+ email + "'");
