@@ -439,8 +439,8 @@ form {
   cursor: pointer;
   opacity: 0.8;
   position: fixed;
-  bottom: 500px;
-  right: 200px;
+  bottom: 23px;
+  right: 28px;
   width: 280px;
 }
 
@@ -448,8 +448,8 @@ form {
 .form-popup {
   display: none;
   position: fixed;
-  bottom: 200px;
-  right: 10px;
+  bottom: 0;
+  right: 28px;
   border: 3px solid #f1f1f1;
   width: 500px;
 }
