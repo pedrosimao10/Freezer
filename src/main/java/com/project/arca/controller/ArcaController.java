@@ -146,41 +146,47 @@ public class ArcaController {
 
     @GetMapping("/home")
     public String getDashboard( Model model) {
-      List<Food> allFood = new ArrayList<Food>();
-      int countCarne = 0;
-      int countPeixe = 0;
-      int countVegetal = 0;
-      int countPizza = 0;
-      int countGelado = 0;
-      allFood = foodRepository.findAll();
-      model.addAttribute("FoodList", allFood);
-      for(int i = 0; i < allFood.size(); i++){
-        System.out.println(allFood.get(i).getCategory().toString());
-        if (allFood.get(i).getCategory().toString().equals("Carne")){
-            countCarne = countCarne + allFood.get(i).getQuantity();
-            model.addAttribute("NCarne", countCarne);
-        }else if(allFood.get(i).getCategory().toString().equals("Peixe")){
-            countPeixe = countPeixe + allFood.get(i).getQuantity();
-            model.addAttribute("NPeixe", countPeixe);
-        }else if(allFood.get(i).getCategory().toString().equals("Legume")){
-            countVegetal = countVegetal + allFood.get(i).getQuantity();
-            model.addAttribute("NVegetal",countVegetal);
-        }else if(allFood.get(i).getCategory().toString().equals("Pizza")){
-            countPizza = countPizza + allFood.get(i).getQuantity();
-            model.addAttribute("NPizza", countPizza);
-        }else if(allFood.get(i).getCategory().toString().equals("Sobremesa")){
-            System.out.println("CHEGUEI");
-            countGelado = countGelado + allFood.get(i).getQuantity();
-            if (countGelado == 0){
-                countGelado = 0;
-            }
-            model.addAttribute("NSobremesa", countGelado);
-        }
-      }
       List<LoginInput> login = new ArrayList<LoginInput>();
       login = loginInputRepository.findAll();
       User user = userService.getUserByEmail(login.get(0).getEmail());
       model.addAttribute("user", user);
+
+      List<Food> allFood = new ArrayList<Food>();
+      int countCarne = 0;
+      int countPeixe = 0;
+      int countVegetal = 0;
+      int countPao = 0;
+      int countPizza = 0;
+      int countGelado = 0;
+      allFood = foodRepository.findAll();
+      model.addAttribute("FoodList", allFood);
+
+
+      for(int i = 0; i < allFood.size(); i++){
+        if(user.getId() == allFood.get(i).getUser_id()){
+            if (allFood.get(i).getCategory().toString().equals("Carne")){
+            countCarne = countCarne + allFood.get(i).getQuantity();
+            model.addAttribute("NCarne", countCarne);
+            }else if(allFood.get(i).getCategory().toString().equals("Peixe")){
+                countPeixe = countPeixe + allFood.get(i).getQuantity();
+                model.addAttribute("NPeixe", countPeixe);
+            }else if(allFood.get(i).getCategory().toString().equals("Legume")){
+                countVegetal = countVegetal + allFood.get(i).getQuantity();
+                model.addAttribute("NVegetal",countVegetal);
+            }else if(allFood.get(i).getCategory().toString().equals("Pao")){
+                countPao = countPao + allFood.get(i).getQuantity();
+                model.addAttribute("NPao",countPao);
+            }else if(allFood.get(i).getCategory().toString().equals("Pizza")){
+                countPizza = countPizza + allFood.get(i).getQuantity();
+                model.addAttribute("NPizza", countPizza);
+            }else if(allFood.get(i).getCategory().toString().equals("Sobremesa")){
+                System.out.println("CHEGUEI");
+                countGelado = countGelado + allFood.get(i).getQuantity();
+                model.addAttribute("NSobremesa", countGelado);
+        }
+        }
+        
+      }
       return "home"; 
     }
 
@@ -271,6 +277,35 @@ public class ArcaController {
         }
     }
 
+    @GetMapping("/addFoodPao")
+    public String addFoodPao(Model model){
+        return "addFoodPao";
+    }
+
+    @PostMapping("/addFoodPao")
+    public String addFoodPostPao(@ModelAttribute Food inputFood, Model model) {
+
+        String name = inputFood.getName();
+        Integer quantity = inputFood.getQuantity();
+
+        List<LoginInput> login = new ArrayList<LoginInput>();
+        login = loginInputRepository.findAll();
+        User user = userService.getUserByEmail(login.get(0).getEmail());
+        model.addAttribute("user", user);
+
+        Food f = new Food("Pao", name, quantity, user.getId());
+
+
+        if ( name == "" || quantity == null) {
+            model.addAttribute("error", "Todos os campos devem estar preenchidos");
+            return "addFoodPao";
+        }
+        else{
+            foodRepository.save(f);
+            return "redirect:/pao";
+        }
+    }
+
     @GetMapping("/addFoodPizza")
     public String addFoodPizza(Model model){
         return "addFoodPizza";
@@ -345,6 +380,12 @@ public class ArcaController {
     public String deleteLegume(@PathVariable long id) throws SQLException, ClassNotFoundException{
         foodRepository.deleteById(id);
         return "redirect:/legumes";
+    }
+
+    @PostMapping("/deletePao/{id}")
+    public String deletePao(@PathVariable long id) throws SQLException, ClassNotFoundException{
+        foodRepository.deleteById(id);
+        return "redirect:/pao";
     }
 
     @PostMapping("/deletePizza/{id}")
@@ -429,6 +470,30 @@ public class ArcaController {
         }
         model.addAttribute("Legumes", foodPerUser);
         return "legumes";
+    }
+
+    @GetMapping("/pao")
+    public String getPao( Model model) {
+        List<LoginInput> login = new ArrayList<LoginInput>();
+        login = loginInputRepository.findAll();
+        User user = userService.getUserByEmail(login.get(0).getEmail());
+        model.addAttribute("user", user);
+
+        List<Food> allFood = new ArrayList<Food>();
+        List<Food> foodPerUser = new ArrayList<Food>();
+
+        allFood = foodRepository.findAll();
+        for (Food food : allFood){
+                if (food.getUser_id()==user.getId()){
+                    if (food.getCategory().toString().equals("Pao")){
+                            foodPerUser.add(food);
+                        }
+                }
+
+            
+        }
+        model.addAttribute("Paos", foodPerUser);
+        return "pao";
     }
 
     @GetMapping("/pizza")

@@ -70,19 +70,19 @@
             <th>Nome</th>
             <th>Quantidade</th>
           </tr>
-          <tr th:each="Peixe : ${Peixes}">
-            <td th:text="${Peixe.name}"></td>
-            <td th:text="${Peixe.quantity}"></td>
+          <tr th:each="Pao : ${Paos}">
+            <td th:text="${Pao.name}"></td>
+            <td th:text="${Pao.quantity}"></td>
             <td>
-              <form th:action="@{/deletePeixe/{id}(id=${Peixe.id})}" th:object="${Peixes}" method="POST">
+              <form th:action="@{/deletePao/{id}(id=${Pao.id})}" th:object="${Paos}" method="POST">
                 <button style="background-color: red;" class="float-right" type="submit">Eliminar</button>
               </form>
           </td>
           </tr>
         <table>
-          <button class="open-button" type="submit" onclick="openForm()" >Adicionar Peixe</button>
+          <button class="open-button" type="submit" onclick="openForm()" >Adicionar Pão</button>
         <div class="form-popup" id="myForm">
-          <form action="#"  th:action="@{/addFoodPeixe}" th:object="${inputFood}" method="POST">
+          <form action="#"  th:action="@{/addFoodPao}" th:object="${inputFood}" method="POST">
         
             <label for="email"><b>Nome</b></label>
             <input th:field="*{name}" type="text" class="form-control" placeholder="Name" required>
@@ -90,8 +90,8 @@
             <label for="psw"><b>Quantidade</b></label>
             <input th:field="*{quantity}" type="text" class="form-control" placeholder="Quantity" required>
         
-            <button type="submit" class="btn">Adicionar Peixe</button>
-            <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+            <button type="submit" class="btn">Adicionar Pão</button>
+            <button type="button" class="btn cancel" onclick="closeForm()">Fechar</button>
           </form>
         </div>
         <p style="color:#FF0000; text-align: center;" th:text="${error}" />
