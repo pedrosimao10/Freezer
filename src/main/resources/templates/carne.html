@@ -75,7 +75,7 @@
             <td th:text="${Carne.name}"></td>
             <td th:text="${Carne.quantity}"></td>
             <td>
-              <form th:action="@{/addCarne/{quantity}/{id}(quantity=${Carne.quantity}, id=${Carne.id})}" th:object="${Carnes}" method="POST">
+              <form th:action="@{/addCarne/{quantity}/{id}(quantity=${Carne.quantity}, id=${Carne.id})/}" th:object="${Carnes}" method="POST">
                 <button style="background-color: green;" class="float-right" type="submit">Adicionar</button>
               </form>
             </td>
