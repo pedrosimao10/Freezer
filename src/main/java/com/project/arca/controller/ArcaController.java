@@ -381,7 +381,7 @@ public class ArcaController {
     }
 
     @Transactional
-    @PostMapping("/addCarne/{quantity}/{name}")
+    @PostMapping("/addCarne/{name}/{quantity}")
     public String addCarne(@PathVariable Integer quantity, @PathVariable String name) throws SQLException, ClassNotFoundException{
         int quantidadeFinal = quantity + 1;
         String myDriver = "com.mysql.jdbc.Driver";
