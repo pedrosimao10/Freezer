@@ -15,6 +15,7 @@ import javax.transaction.Transactional;
 import javax.validation.constraints.Null;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -380,19 +381,10 @@ public class ArcaController {
         return "redirect:/carne";
     }
 
+    @PostMapping("/addCarne/{quantity}/{id}")
     @Transactional
-    @PostMapping("/addCarne//{quantity}/{id}")
-    public String addCarne(@PathVariable Integer quantity, @PathVariable Integer id) throws SQLException, ClassNotFoundException{
-        int quantidadeFinal = quantity + 1;
-        String myDriver = "com.mysql.jdbc.Driver";
-        String myUrl = "jdbc:mysql://eu-cdbr-west-03.cleardb.net/heroku_3fd040857891606";
-        Class.forName(myDriver);
-        Connection conn = DriverManager.getConnection(myUrl, "b59406f41fe5d6", "6911947e");
-        
-        Statement st = conn.createStatement();
-        st.executeUpdate(" UPDATE food SET quantity='"+ quantidadeFinal + "' WHERE id='"+ id + "' ");
-
-        conn.close();
+    public String updateOrderState(@PathVariable("id") Integer id,@PathVariable("quantity") Integer quantity){
+        foodRepository.changeAmmountFood(id, quantity);
         return "redirect:/carne";
     }
 
