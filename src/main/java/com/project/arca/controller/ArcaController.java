@@ -367,8 +367,19 @@ public class ArcaController {
     @Transactional
     @PostMapping("/deleteCarne/{quantity}")
     public String deleteCarne(@PathVariable Integer quantity) throws SQLException, ClassNotFoundException{
-        System.out.println(quantity);
-        foodRepository.deleteByQuantity(quantity);
+        List<LoginInput> login = new ArrayList<LoginInput>();
+        login = loginInputRepository.findAll();
+        String email = login.get(0).getEmail();
+        int quantidadeFinal = quantity - 1;
+        String myDriver = "com.mysql.jdbc.Driver";
+        String myUrl = "jdbc:mysql://eu-cdbr-west-03.cleardb.net/heroku_3fd040857891606";
+        Class.forName(myDriver);
+        Connection conn = DriverManager.getConnection(myUrl, "b59406f41fe5d6", "6911947e");
+        
+        Statement st = conn.createStatement();
+        st.executeUpdate(" UPDATE food SET quantity='"+ quantidadeFinal + "'");
+
+        conn.close();
         return "redirect:/carne";
     }
 
