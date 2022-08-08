@@ -9,4 +9,5 @@ import org.springframework.stereotype.Repository;
 public interface FoodRepository extends JpaRepository<Food, Long> {
     Food findById(long id);
     Food findByName(String name);
+    Food deleteByQuantity(long quantity);
 }
