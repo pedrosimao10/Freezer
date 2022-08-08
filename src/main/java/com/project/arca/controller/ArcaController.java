@@ -367,9 +367,6 @@ public class ArcaController {
     @Transactional
     @PostMapping("/deleteCarne/{quantity}")
     public String deleteCarne(@PathVariable Integer quantity) throws SQLException, ClassNotFoundException{
-        List<LoginInput> login = new ArrayList<LoginInput>();
-        login = loginInputRepository.findAll();
-        String email = login.get(0).getEmail();
         int quantidadeFinal = quantity - 1;
         String myDriver = "com.mysql.jdbc.Driver";
         String myUrl = "jdbc:mysql://eu-cdbr-west-03.cleardb.net/heroku_3fd040857891606";
@@ -383,35 +380,183 @@ public class ArcaController {
         return "redirect:/carne";
     }
 
-    @PostMapping("/deletePeixe/{id}")
-    public String deletePeixe(@PathVariable long id) throws SQLException, ClassNotFoundException{
-        foodRepository.deleteById(id);
+    @Transactional
+    @PostMapping("/addCarne/{quantity}")
+    public String addCarne(@PathVariable Integer quantity) throws SQLException, ClassNotFoundException{
+        int quantidadeFinal = quantity + 1;
+        String myDriver = "com.mysql.jdbc.Driver";
+        String myUrl = "jdbc:mysql://eu-cdbr-west-03.cleardb.net/heroku_3fd040857891606";
+        Class.forName(myDriver);
+        Connection conn = DriverManager.getConnection(myUrl, "b59406f41fe5d6", "6911947e");
+        
+        Statement st = conn.createStatement();
+        st.executeUpdate(" UPDATE food SET quantity='"+ quantidadeFinal + "'");
+
+        conn.close();
+        return "redirect:/carne";
+    }
+
+    @Transactional
+    @PostMapping("/deletePeixe/{quantity}")
+    public String deletePeixe(@PathVariable Integer quantity) throws SQLException, ClassNotFoundException{
+        int quantidadeFinal = quantity - 1;
+        String myDriver = "com.mysql.jdbc.Driver";
+        String myUrl = "jdbc:mysql://eu-cdbr-west-03.cleardb.net/heroku_3fd040857891606";
+        Class.forName(myDriver);
+        Connection conn = DriverManager.getConnection(myUrl, "b59406f41fe5d6", "6911947e");
+        
+        Statement st = conn.createStatement();
+        st.executeUpdate(" UPDATE food SET quantity='"+ quantidadeFinal + "'");
+
+        conn.close();
         return "redirect:/peixe";
     }
 
-    @PostMapping("/deleteLegume/{id}")
-    public String deleteLegume(@PathVariable long id) throws SQLException, ClassNotFoundException{
-        foodRepository.deleteById(id);
+    @Transactional
+    @PostMapping("/addPeixe/{quantity}")
+    public String addPeixe(@PathVariable Integer quantity) throws SQLException, ClassNotFoundException{
+        int quantidadeFinal = quantity + 1;
+        String myDriver = "com.mysql.jdbc.Driver";
+        String myUrl = "jdbc:mysql://eu-cdbr-west-03.cleardb.net/heroku_3fd040857891606";
+        Class.forName(myDriver);
+        Connection conn = DriverManager.getConnection(myUrl, "b59406f41fe5d6", "6911947e");
+        
+        Statement st = conn.createStatement();
+        st.executeUpdate(" UPDATE food SET quantity='"+ quantidadeFinal + "'");
+
+        conn.close();
+        return "redirect:/peixe";
+    }
+
+    @Transactional
+    @PostMapping("/deleteLegumes/{quantity}")
+    public String deleteLegumes(@PathVariable Integer quantity) throws SQLException, ClassNotFoundException{
+        int quantidadeFinal = quantity - 1;
+        String myDriver = "com.mysql.jdbc.Driver";
+        String myUrl = "jdbc:mysql://eu-cdbr-west-03.cleardb.net/heroku_3fd040857891606";
+        Class.forName(myDriver);
+        Connection conn = DriverManager.getConnection(myUrl, "b59406f41fe5d6", "6911947e");
+        
+        Statement st = conn.createStatement();
+        st.executeUpdate(" UPDATE food SET quantity='"+ quantidadeFinal + "'");
+
+        conn.close();
         return "redirect:/legumes";
     }
 
-    @PostMapping("/deletePao/{id}")
-    public String deletePao(@PathVariable long id) throws SQLException, ClassNotFoundException{
-        foodRepository.deleteById(id);
+    @Transactional
+    @PostMapping("/addLegumes/{quantity}")
+    public String addLegumes(@PathVariable Integer quantity) throws SQLException, ClassNotFoundException{
+        int quantidadeFinal = quantity + 1;
+        String myDriver = "com.mysql.jdbc.Driver";
+        String myUrl = "jdbc:mysql://eu-cdbr-west-03.cleardb.net/heroku_3fd040857891606";
+        Class.forName(myDriver);
+        Connection conn = DriverManager.getConnection(myUrl, "b59406f41fe5d6", "6911947e");
+        
+        Statement st = conn.createStatement();
+        st.executeUpdate(" UPDATE food SET quantity='"+ quantidadeFinal + "'");
+
+        conn.close();
+        return "redirect:/legumes";
+    }
+
+    @Transactional
+    @PostMapping("/deletePao/{quantity}")
+    public String deletePao(@PathVariable Integer quantity) throws SQLException, ClassNotFoundException{
+        int quantidadeFinal = quantity - 1;
+        String myDriver = "com.mysql.jdbc.Driver";
+        String myUrl = "jdbc:mysql://eu-cdbr-west-03.cleardb.net/heroku_3fd040857891606";
+        Class.forName(myDriver);
+        Connection conn = DriverManager.getConnection(myUrl, "b59406f41fe5d6", "6911947e");
+        
+        Statement st = conn.createStatement();
+        st.executeUpdate(" UPDATE food SET quantity='"+ quantidadeFinal + "'");
+
+        conn.close();
         return "redirect:/pao";
     }
 
-    @PostMapping("/deletePizza/{id}")
-    public String deletePizza(@PathVariable long id) throws SQLException, ClassNotFoundException{
-        foodRepository.deleteById(id);
+    @Transactional
+    @PostMapping("/addPao/{quantity}")
+    public String addPao(@PathVariable Integer quantity) throws SQLException, ClassNotFoundException{
+        int quantidadeFinal = quantity + 1;
+        String myDriver = "com.mysql.jdbc.Driver";
+        String myUrl = "jdbc:mysql://eu-cdbr-west-03.cleardb.net/heroku_3fd040857891606";
+        Class.forName(myDriver);
+        Connection conn = DriverManager.getConnection(myUrl, "b59406f41fe5d6", "6911947e");
+        
+        Statement st = conn.createStatement();
+        st.executeUpdate(" UPDATE food SET quantity='"+ quantidadeFinal + "'");
+
+        conn.close();
+        return "redirect:/pao";
+    }
+
+    @Transactional
+    @PostMapping("/deletePizza/{quantity}")
+    public String deletePizza(@PathVariable Integer quantity) throws SQLException, ClassNotFoundException{
+        int quantidadeFinal = quantity - 1;
+        String myDriver = "com.mysql.jdbc.Driver";
+        String myUrl = "jdbc:mysql://eu-cdbr-west-03.cleardb.net/heroku_3fd040857891606";
+        Class.forName(myDriver);
+        Connection conn = DriverManager.getConnection(myUrl, "b59406f41fe5d6", "6911947e");
+        
+        Statement st = conn.createStatement();
+        st.executeUpdate(" UPDATE food SET quantity='"+ quantidadeFinal + "'");
+
+        conn.close();
         return "redirect:/pizza";
     }
 
-    @PostMapping("/deleteSobremesa/{id}")
-    public String deleteSobremesa(@PathVariable long id) throws SQLException, ClassNotFoundException{
-        foodRepository.deleteById(id);
+    @Transactional
+    @PostMapping("/addPizza/{quantity}")
+    public String addPizza(@PathVariable Integer quantity) throws SQLException, ClassNotFoundException{
+        int quantidadeFinal = quantity + 1;
+        String myDriver = "com.mysql.jdbc.Driver";
+        String myUrl = "jdbc:mysql://eu-cdbr-west-03.cleardb.net/heroku_3fd040857891606";
+        Class.forName(myDriver);
+        Connection conn = DriverManager.getConnection(myUrl, "b59406f41fe5d6", "6911947e");
+        
+        Statement st = conn.createStatement();
+        st.executeUpdate(" UPDATE food SET quantity='"+ quantidadeFinal + "'");
+
+        conn.close();
+        return "redirect:/pizza";
+    }
+
+    @Transactional
+    @PostMapping("/deleteSobremesa/{quantity}")
+    public String deleteSobremesa(@PathVariable Integer quantity) throws SQLException, ClassNotFoundException{
+        int quantidadeFinal = quantity - 1;
+        String myDriver = "com.mysql.jdbc.Driver";
+        String myUrl = "jdbc:mysql://eu-cdbr-west-03.cleardb.net/heroku_3fd040857891606";
+        Class.forName(myDriver);
+        Connection conn = DriverManager.getConnection(myUrl, "b59406f41fe5d6", "6911947e");
+        
+        Statement st = conn.createStatement();
+        st.executeUpdate(" UPDATE food SET quantity='"+ quantidadeFinal + "'");
+
+        conn.close();
         return "redirect:/sobremesa";
     }
+
+    @Transactional
+    @PostMapping("/addSobremesa/{quantity}")
+    public String addSobremesa(@PathVariable Integer quantity) throws SQLException, ClassNotFoundException{
+        int quantidadeFinal = quantity + 1;
+        String myDriver = "com.mysql.jdbc.Driver";
+        String myUrl = "jdbc:mysql://eu-cdbr-west-03.cleardb.net/heroku_3fd040857891606";
+        Class.forName(myDriver);
+        Connection conn = DriverManager.getConnection(myUrl, "b59406f41fe5d6", "6911947e");
+        
+        Statement st = conn.createStatement();
+        st.executeUpdate(" UPDATE food SET quantity='"+ quantidadeFinal + "'");
+
+        conn.close();
+        return "redirect:/sobremesa";
+    }
+
+
 
     @GetMapping("/carne")
     public String getCarne( Model model) {

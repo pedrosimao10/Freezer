@@ -75,10 +75,15 @@
             <td th:text="${Sobremesa.name}"></td>
             <td th:text="${Sobremesa.quantity}"></td>
             <td>
-              <form th:action="@{/deleteSobremesa/{id}(id=${Sobremesa.id})}" th:object="${Sobremesas}" method="POST">
+              <form th:action="@{/addSobremesa/{quantity}(quantity=${Sobremesa.quantity})}" th:object="${Sobremesas}" method="POST">
+                <button style="background-color: green;" class="float-right" type="submit">Adicionar</button>
+              </form>
+            </td>
+            <td>
+              <form th:action="@{/deleteSobremesa/{quantity}(quantity=${Sobremesa.quantity})}" th:object="${Sobremesas}" method="POST">
                 <button style="background-color: red;" class="float-right" type="submit">Eliminar</button>
               </form>
-          </td>
+            </td>
           </tr>
         <table>
           <button class="open-button" type="submit" onclick="openForm()" >Adicionar Sobremesa</button>
