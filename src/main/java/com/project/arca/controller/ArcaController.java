@@ -374,15 +374,15 @@ public class ArcaController {
         Connection conn = DriverManager.getConnection(myUrl, "b59406f41fe5d6", "6911947e");
         
         Statement st = conn.createStatement();
-        st.executeUpdate(" UPDATE food SET quantity='"+ quantidadeFinal + "'");
+        st.executeUpdate(" UPDATE food SET quantity='"+ quantidadeFinal + "' WHERE ");
 
         conn.close();
         return "redirect:/carne";
     }
 
     @Transactional
-    @PostMapping("/addCarne/{quantity}")
-    public String addCarne(@PathVariable Integer quantity) throws SQLException, ClassNotFoundException{
+    @PostMapping("/addCarne/{quantity}/{name}")
+    public String addCarne(@PathVariable Integer quantity, @PathVariable String name) throws SQLException, ClassNotFoundException{
         int quantidadeFinal = quantity + 1;
         String myDriver = "com.mysql.jdbc.Driver";
         String myUrl = "jdbc:mysql://eu-cdbr-west-03.cleardb.net/heroku_3fd040857891606";
@@ -390,7 +390,7 @@ public class ArcaController {
         Connection conn = DriverManager.getConnection(myUrl, "b59406f41fe5d6", "6911947e");
         
         Statement st = conn.createStatement();
-        st.executeUpdate(" UPDATE food SET quantity='"+ quantidadeFinal + "'");
+        st.executeUpdate(" UPDATE food SET quantity='"+ quantidadeFinal + "' WHERE name='"+ name + "' ");
 
         conn.close();
         return "redirect:/carne";
