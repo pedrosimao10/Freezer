@@ -366,7 +366,7 @@ public class ArcaController {
 
     @Transactional
     @PostMapping("/deleteCarne/{quantity}")
-    public String deleteCarne(@PathVariable long quantity) throws SQLException, ClassNotFoundException{
+    public String deleteCarne(@PathVariable Integer quantity) throws SQLException, ClassNotFoundException{
         System.out.println(quantity);
         foodRepository.deleteByQuantity(quantity);
         return "redirect:/carne";
